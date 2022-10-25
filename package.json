@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-table": "^8.5.15",
     "daisyui": "^2.33.0",
     "luxon": "^3.0.4",
     "millify": "^5.0.1",
