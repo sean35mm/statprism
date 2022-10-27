@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useQuery } from 'react-query';
-import { useRouter } from 'next/router';
+import { listCoins } from '../../lib/queries';
+import Pagination from './Pagination';
+
 import {
 	createColumnHelper,
 	flexRender,
@@ -10,7 +12,26 @@ import {
 } from '@tanstack/react-table';
 
 const DataTable = () => {
-	const router = useRouter();
+	const [currPage, setCurrentPage] = useState(1);
+	const [coinsPerPage] = useState(10);
+
+	// FETCH COIN DATA
+
+	const { data, isLoading } = useQuery('allCoins', listCoins);
+
+	if (isLoading) return <p>Loading coins...</p>;
+
+	//PAGINATION
+	const indexOfLastRecord = currPage * coinsPerPage;
+	const indexOfFirstRecord = indexOfLastRecord - coinsPerPage;
+	const coinsOnTable = data.slice(indexOfFirstRecord, indexOfLastRecord);
+	const topCoins = data.slice(0, 100);
+
+	const paginateFront = () => setCurrentPage(currPage + 1);
+	const paginateBack = () => setCurrentPage(currPage - 1);
+
+	// DEFINE COLUMNS
+
 	const columnHelper = createColumnHelper();
 
 	const columns = [
@@ -35,27 +56,17 @@ const DataTable = () => {
 		})
 	];
 
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const table = useReactTable({
-		// topCoins,
+		// coinsOnTable,
 		columns,
 		getCoreRowModel: getCoreRowModel()
 	});
 
-	const listCoins = async () => {
-		const data = await fetch('https://api.coinpaprika.com/v1/coins');
-		return data.json();
-	};
-
-	const { data, isLoading } = useQuery('allCoins', listCoins);
-
-	if (isLoading) return <p>Loading coins...</p>;
-
-	const topCoins = data.slice(0, 100);
-
 	return (
 		<div>
-			<h1 className='text-3xl normal-case font-bold text-primary mb-4'>Top 100 Coins</h1>
-			<div className='flex flex-col border-primary border-[1px] rounded-xl'>
+			<h1 className='text-2xl normal-case font-bold text-primary my-4'>Top 100 Coins</h1>
+			<div className='flex flex-col border-primary rounded-md border-[1px]'>
 				<div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
 					<div className='py-2 inline-block min-w-full sm:px-6 lg:px-8'>
 						<div className='overflow-hidden'>
@@ -88,7 +99,7 @@ const DataTable = () => {
                       ))}
                     </tr>
                   ))} */}
-									{topCoins.map((coin) => {
+									{coinsOnTable.map((coin) => {
 										return (
 											<tr key={coin.id} className='even:bg-base-200 border-b'>
 												<td className='px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900'>
@@ -111,6 +122,15 @@ const DataTable = () => {
 									})}
 								</tbody>
 							</table>
+							<div className='flex justify-center my-2'>
+								<Pagination
+									coinsPerPage={coinsPerPage}
+									totalCoins={topCoins.length}
+									paginateBack={paginateBack}
+									paginateFront={paginateFront}
+									currentPage={currPage}
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
