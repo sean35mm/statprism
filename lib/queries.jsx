@@ -1,3 +1,5 @@
+//BING NEWS API
+
 export const getNews = async () => {
 	const data = await fetch(
 		`https://bing-news-search1.p.rapidapi.com/news/search?q=cryptocurrency&safeSearch=Off&textFormat=Raw&freshness=Day&count=100`,
@@ -11,6 +13,8 @@ export const getNews = async () => {
 	);
 	return data.json();
 };
+
+//COINPAPRIKA API - main api because markets and exchanges are free
 
 export const listCoins = async () => {
 	const data = await fetch('https://api.coinpaprika.com/v1/coins');
@@ -44,5 +48,14 @@ export const listExchanges = async () => {
 
 export const exchangeDetailsQuery = async (exchangeId) => {
 	const data = await fetch(`https://api.coinpaprika.com/v1/exchanges/${exchangeId}`);
+	return data.json();
+};
+
+//COINRANKING API - Using this for historical data because it is more extensive and free
+
+export const cryptoHistoryQuery = async (coinId, timePeriod) => {
+	const data = await fetch(
+		`https://coinranking1.p.rapidapi.com/coin/${coinId}/history/${timePeriod}`
+	);
 	return data.json();
 };
