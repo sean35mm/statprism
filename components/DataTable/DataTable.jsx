@@ -15,21 +15,6 @@ const DataTable = () => {
 	const [currPage, setCurrentPage] = useState(1);
 	const [coinsPerPage] = useState(10);
 
-	// FETCH COIN DATA
-
-	const { data, isLoading } = useQuery('allCoins', listCoins);
-
-	if (isLoading) return <p>Loading coins...</p>;
-
-	//PAGINATION
-	const indexOfLastRecord = currPage * coinsPerPage;
-	const indexOfFirstRecord = indexOfLastRecord - coinsPerPage;
-	const coinsOnTable = data.slice(indexOfFirstRecord, indexOfLastRecord);
-	const topCoins = data.slice(0, 100);
-
-	const paginateFront = () => setCurrentPage(currPage + 1);
-	const paginateBack = () => setCurrentPage(currPage - 1);
-
 	// DEFINE COLUMNS
 
 	const columnHelper = createColumnHelper();
@@ -56,15 +41,29 @@ const DataTable = () => {
 		})
 	];
 
-	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const table = useReactTable({
 		// coinsOnTable,
 		columns,
 		getCoreRowModel: getCoreRowModel()
 	});
 
+	// FETCH COIN DATA
+
+	const { data, isLoading } = useQuery('allCoins', listCoins);
+
+	if (isLoading) return <p>Loading coins...</p>;
+
+	//PAGINATION LOGIC
+	const indexOfLastRecord = currPage * coinsPerPage;
+	const indexOfFirstRecord = indexOfLastRecord - coinsPerPage;
+	const coinsOnTable = data.slice(indexOfFirstRecord, indexOfLastRecord);
+	const topCoins = data.slice(0, 100);
+
+	const paginateFront = () => setCurrentPage(currPage + 1);
+	const paginateBack = () => setCurrentPage(currPage - 1);
+
 	return (
-		<div>
+		<div className='w-1/2'>
 			<h1 className='text-2xl normal-case font-bold text-primary my-4'>Top 100 Coins</h1>
 			<div className='flex flex-col border-primary rounded-md border-[1px]'>
 				<div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>

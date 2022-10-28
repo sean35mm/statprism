@@ -5,12 +5,10 @@ import NewsWidget from '../components/NewsWidget/NewsWidget';
 
 export default function Home() {
 	return (
-		<div className='m-4 flex flex-col items-center'>
+		<div className='m-4 flex flex-col'>
 			<Stats />
-			<div className='w-4/5'>
-				<NewsWidget />
-				<DataTable />
-			</div>
+			<NewsWidget />
+			<DataTable />
 		</div>
 	);
 }

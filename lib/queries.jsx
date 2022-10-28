@@ -16,3 +16,33 @@ export const listCoins = async () => {
 	const data = await fetch('https://api.coinpaprika.com/v1/coins');
 	return data.json();
 };
+
+export const coinDetailsQuery = async (coinId) => {
+	const data = await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`);
+	return data.json();
+};
+
+export const coinTwitterFeed = async (coinId) => {
+	const data = await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}/twitter`);
+	return data.json();
+};
+
+export const todayOHLC = async (coinId) => {
+	const data = await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}/ohlcv/today/`);
+	return data.json();
+};
+
+export const historicalOHLC = async (coinId) => {
+	const data = await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}/ohlcv/historical`);
+	return data.json();
+};
+
+export const listExchanges = async () => {
+	const data = await fetch('https://api.coinpaprika.com/v1/exchanges');
+	return data.json();
+};
+
+export const exchangeDetailsQuery = async (exchangeId) => {
+	const data = await fetch(`https://api.coinpaprika.com/v1/exchanges/${exchangeId}`);
+	return data.json();
+};

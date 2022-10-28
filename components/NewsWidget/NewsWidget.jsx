@@ -12,7 +12,7 @@ const NewsWidget = () => {
 	const widgetList = data.value.slice(0, 4);
 
 	return (
-		<div>
+		<div className='w-1/2'>
 			<h1 className='text-2xl text-primary font-bold my-6'>Latest Cryptocurrency News</h1>
 			<div className='border-[1px] rounded-md border-primary'>
 				{widgetList.map((article) => (
@@ -32,7 +32,7 @@ const NewsWidget = () => {
 							/>
 						</div>
 
-						<div className='flex flex-col text-end w-4/5'>
+						<div className='flex flex-col text-end w-3/4'>
 							<a
 								target='_blank'
 								rel='noopener noreferrer'
