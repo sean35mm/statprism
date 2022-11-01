@@ -14,7 +14,7 @@ const Stats = () => {
 	if (isLoading) return <p>Loading...</p>;
 
 	return (
-		<div className='flex flex-wrap justify-evenly'>
+		<div className='flex flex-wrap justify-evenly font-titillium'>
 			<div className='stats shadow bg-base-200 mx-2 my-2'>
 				<div className='stat'>
 					<div className='stat-title'>Market Cap</div>

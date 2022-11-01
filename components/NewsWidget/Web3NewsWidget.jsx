@@ -12,7 +12,7 @@ const Web3NewsWidget = () => {
 	const widgetList = data.value.slice(0, 4);
 
 	return (
-		<div className='w-1/2'>
+		<div className='w-1/2 mx-2'>
 			<h1 className='text-2xl text-primary font-bold my-6'>Latest Web3 News</h1>
 			<div className='border-[1px] rounded-md border-primary'>
 				{widgetList.map((article) => (
