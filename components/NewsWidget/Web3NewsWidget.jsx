@@ -1,11 +1,11 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import { getCryptoNews } from '../../lib/queries';
+import { getWeb3News } from '../../lib/queries';
 import Image from 'next/image';
 import placeholderImage from '../../lib/images/newsIcon.jpg';
 
-const NewsWidget = () => {
-	const { data, isLoading } = useQuery('crypto news', getCryptoNews);
+const Web3NewsWidget = () => {
+	const { data, isLoading } = useQuery('web3 news', getWeb3News);
 
 	if (isLoading) return <div>Loading...</div>;
 
@@ -13,7 +13,7 @@ const NewsWidget = () => {
 
 	return (
 		<div className='w-1/2'>
-			<h1 className='text-2xl text-primary font-bold my-6'>Latest Cryptocurrency News</h1>
+			<h1 className='text-2xl text-primary font-bold my-6'>Latest Web3 News</h1>
 			<div className='border-[1px] rounded-md border-primary'>
 				{widgetList.map((article) => (
 					<div key={article.type} className='flex justify-between p-6 border-b hover:bg-base-200'>
@@ -40,9 +40,7 @@ const NewsWidget = () => {
 							>
 								{article.name}
 							</a>
-							<p className='text-primary italic'>
-								{article.category ? article.category : 'Cryptocurrency'}
-							</p>
+							<p className='text-primary italic'>{article.category ? article.category : 'Web3'}</p>
 						</div>
 					</div>
 				))}
@@ -51,4 +49,4 @@ const NewsWidget = () => {
 	);
 };
 
-export default NewsWidget;
+export default Web3NewsWidget;

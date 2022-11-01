@@ -63,7 +63,7 @@ const DataTable = () => {
 	const paginateBack = () => setCurrentPage(currPage - 1);
 
 	return (
-		<div className='w-1/2'>
+		<div className=''>
 			<h1 className='text-2xl normal-case font-bold text-primary my-4'>Top 100 Coins</h1>
 			<div className='flex flex-col border-primary rounded-md border-[1px]'>
 				<div className='overflow-x-auto sm:-mx-6 lg:-mx-8'>
