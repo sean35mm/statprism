@@ -8,14 +8,14 @@ export default function Pagination({
 	currentPage
 }) {
 	return (
-		<div className='py-2'>
+		<div className='py-2 mt-2'>
 			<div>
 				<p className='text-sm text-gray-700'>
 					Showing {currentPage * coinsPerPage - 10} to {currentPage * coinsPerPage} of {totalCoins}{' '}
 					results
 				</p>
 			</div>
-			<div>
+			<div className='mt-2'>
 				<nav
 					className='relative z-0 inline-flex rounded-md shadow-sm -space-x-px'
 					aria-label='Pagination'
@@ -27,9 +27,9 @@ export default function Pagination({
 							paginateBack();
 						}}
 						href='#'
-						className='relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50'
+						className='btn btn-secondary w-20'
 					>
-						<span>Previous</span>
+						Previous
 					</button>
 
 					<button
@@ -39,9 +39,9 @@ export default function Pagination({
 							paginateFront();
 						}}
 						href='#'
-						className='relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50'
+						className='btn btn-primary w-20'
 					>
-						<span>Next</span>
+						Next
 					</button>
 				</nav>
 			</div>
