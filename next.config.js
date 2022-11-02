@@ -20,7 +20,7 @@ module.exports = async (phase, { defaultConfig }) => {
 	const nextConfig = {
 		reactStrictMode: true,
 		images: {
-			domains: ['bing.com', 'www.bing.com'],
+			domains: ['bing.com', 'www.bing.com', 'static.coinpaprika.com'],
 			remotePatterns: [
 				{
 					protocol: 'https',
