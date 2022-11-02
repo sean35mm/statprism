@@ -13,7 +13,7 @@ const Web3NewsWidget = () => {
 
 	return (
 		<div className='w-1/2 mx-2'>
-			<h1 className='text-2xl text-primary font-bold my-6'>Latest Web3 News</h1>
+			<h1 className='text-2xl text-primary font-bold my-6 font-titillium'>Latest Web3 News</h1>
 			<div className='border-[1px] rounded-md border-primary'>
 				{widgetList.map((article) => (
 					<div key={article.type} className='flex justify-between p-6 border-b hover:bg-base-200'>
