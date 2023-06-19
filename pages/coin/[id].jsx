@@ -83,7 +83,7 @@ const CoinDetail = () => {
 								)
 							})
 						) : (
-							<div className='text-center'>Loading...</div>
+							<div className='text-center m-8'>Loading...</div>
 						)}
 					</div>
 				</div>
