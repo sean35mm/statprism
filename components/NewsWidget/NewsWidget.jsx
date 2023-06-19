@@ -1,15 +1,15 @@
-import React from 'react';
-import { useQuery } from 'react-query';
-import { getCryptoNews } from '../../lib/queries';
-import Image from 'next/image';
-import placeholderImage from '../../lib/images/newsIcon.jpg';
+import React from 'react'
+import { useQuery } from 'react-query'
+import { getCryptoNews } from '../../lib/queries'
+import Image from 'next/image'
+import placeholderImage from '../../lib/images/newsIcon.jpg'
 
 const NewsWidget = () => {
-	const { data, isLoading } = useQuery('crypto news', getCryptoNews);
+	const { data, isLoading } = useQuery('crypto news', getCryptoNews)
 
-	if (isLoading) return <div>Loading...</div>;
+	if (isLoading) return <div className='m-8 text-center'>Loading...</div>
 
-	const widgetList = data.value.slice(0, 4);
+	const widgetList = data.value.slice(0, 4)
 
 	return (
 		<div className='w-1/2 mx-2'>
@@ -18,7 +18,10 @@ const NewsWidget = () => {
 			</h1>
 			<div className='border-[1px] rounded-md border-primary'>
 				{widgetList.map((article) => (
-					<div key={article.type} className='flex justify-between p-6 border-b hover:bg-base-200'>
+					<div
+						key={article.type}
+						className='flex justify-between p-6 border-b hover:bg-base-200'
+					>
 						<div className='relative'>
 							<Image
 								src={
@@ -50,7 +53,7 @@ const NewsWidget = () => {
 				))}
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-export default NewsWidget;
+export default NewsWidget
